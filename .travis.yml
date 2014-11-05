@@ -9,12 +9,8 @@ language: c
 # Travis-CI build matrix resulting in multiple builds). You can use
 # this to test against multiple Racket versions.
 env:
- - RACKET_VERSION=5.3.4
- - RACKET_VERSION=5.3.5
- - RACKET_VERSION=5.92
- - RACKET_VERSION=6.0
  - RACKET_VERSION=6.1
- - RACKET_VERSION=HEAD
+
 
 before_install:
 - git clone https://github.com/greghendershott/travis-racket.git
@@ -29,7 +25,9 @@ before_script:
 # `raco pkg install --deps search-auto <pkg>` to install any required
 # packages without it getting stuck on a confirmation prompt.
 script:
- - /usr/racket/bin/raco make main.rkt
+ - cd p0
+ - cat UnitTestRacket.sh | bash
+ - /usr/racket/bin/raco make test.rkt
  - /usr/racket/bin/raco test -x .
 
 # NOTE: If your repo is a Racket package with an info.rkt that
