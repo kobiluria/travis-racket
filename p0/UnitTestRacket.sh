@@ -7,8 +7,11 @@
 for f in *.rkt
 do
     name="${f%.*}"
-    echo "\n    (provide(prefix-out "$name": (all-defined-out)))" >> $f
+    echo -e "\n    (provide(prefix-out "$name": (all-defined-out)))" >> $f
+    cat $f
 done
+
+
 
 ##########################################
 # Create Test Module and add a few tests #
